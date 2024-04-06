@@ -1,7 +1,7 @@
 import React from "react";
-
-// react-bootstrap components
+import PropTypes from "prop-types";
 import {
+// react-bootstrap components
   Badge,
   Button,
   Card,
@@ -10,10 +10,80 @@ import {
   Table,
   Container,
   Row,
-  Col,
+  Col
 } from "react-bootstrap";
 
 function TableList() {
+  
+  const data = [
+    {
+      SROLL: '2019001',
+      SNAME: 'Alice',
+      CGPA: 8.5,
+      EMAIL: 'alice@example.com',
+      GENDER: 'f',
+      ANY_ARREARS: 'n',
+      PR_ID: 1,
+      BR_ID: 1,
+      Pass: 'password123',
+      OFFER_ID: 1,
+      OFFER_LOC: 'New York'
+    },
+    {
+      SROLL: '2019002',
+      SNAME: 'Bob',
+      CGPA: 8,
+      EMAIL: 'bob@example.com',
+      GENDER: 'm',
+      ANY_ARREARS: 'n',
+      PR_ID: 1,
+      BR_ID: 1,
+      Pass: 'password456',
+      OFFER_ID: 2,
+      OFFER_LOC: 'London'
+    },
+    {
+      SROLL: '2019003',
+      SNAME: 'Charlie',
+      CGPA: 7.5,
+      EMAIL: 'charlie@example.com',
+      GENDER: 'm',
+      ANY_ARREARS: 'y',
+      PR_ID: 2,
+      BR_ID: 2,
+      Pass: 'password789',
+      OFFER_ID: 3,
+      OFFER_LOC: 'Tokyo'
+    },
+    {
+      SROLL: '2019004',
+      SNAME: 'David',
+      CGPA: 7,
+      EMAIL: 'david@example.com',
+      GENDER: 'm',
+      ANY_ARREARS: 'n',
+      PR_ID: 2,
+      BR_ID: 2,
+      Pass: 'password101112',
+      OFFER_ID: 4,
+      OFFER_LOC: 'Paris'
+    },
+    {
+      SROLL: '2019005',
+      SNAME: 'Eve',
+      CGPA: 6.5,
+      EMAIL: 'eve@example.com',
+      GENDER: 'f',
+      ANY_ARREARS: 'y',
+      PR_ID: 3,
+      BR_ID: 3,
+      Pass: 'password131415',
+      OFFER_ID: 5,
+      OFFER_LOC: 'Sydney'
+    }
+  ]
+  
+
   return (
     <>
       <Container fluid>
@@ -30,56 +100,21 @@ function TableList() {
                 <Table className="table-hover table-striped">
                   <thead>
                     <tr>
-                      <th className="border-0">ID</th>
-                      <th className="border-0">Name</th>
-                      <th className="border-0">Salary</th>
-                      <th className="border-0">Country</th>
-                      <th className="border-0">City</th>
+                      {Object.keys(data[0]).map((key) => (
+                        <th className="border-0" key={key}>
+                          {key}
+                        </th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Dakota Rice</td>
-                      <td>$36,738</td>
-                      <td>Niger</td>
-                      <td>Oud-Turnhout</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Minerva Hooper</td>
-                      <td>$23,789</td>
-                      <td>Curaçao</td>
-                      <td>Sinaai-Waas</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Sage Rodriguez</td>
-                      <td>$56,142</td>
-                      <td>Netherlands</td>
-                      <td>Baileux</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Philip Chaney</td>
-                      <td>$38,735</td>
-                      <td>Korea, South</td>
-                      <td>Overland Park</td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>Doris Greene</td>
-                      <td>$63,542</td>
-                      <td>Malawi</td>
-                      <td>Feldkirchen in Kärnten</td>
-                    </tr>
-                    <tr>
-                      <td>6</td>
-                      <td>Mason Porter</td>
-                      <td>$78,615</td>
-                      <td>Chile</td>
-                      <td>Gloucester</td>
-                    </tr>
+                    {data.map((item) => (
+                      <tr key={item.id}>
+                        {Object.values(item).map((value, index) => (
+                          <td key={index}>{value}</td>
+                        ))}
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </Card.Body>
@@ -97,56 +132,21 @@ function TableList() {
                 <Table className="table-hover">
                   <thead>
                     <tr>
-                      <th className="border-0">ID</th>
-                      <th className="border-0">Name</th>
-                      <th className="border-0">Salary</th>
-                      <th className="border-0">Country</th>
-                      <th className="border-0">City</th>
+                      {Object.keys(data[0]).map((key) => (
+                        <th className="border-0" key={key}>
+                          {key}
+                        </th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Dakota Rice</td>
-                      <td>$36,738</td>
-                      <td>Niger</td>
-                      <td>Oud-Turnhout</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Minerva Hooper</td>
-                      <td>$23,789</td>
-                      <td>Curaçao</td>
-                      <td>Sinaai-Waas</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Sage Rodriguez</td>
-                      <td>$56,142</td>
-                      <td>Netherlands</td>
-                      <td>Baileux</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Philip Chaney</td>
-                      <td>$38,735</td>
-                      <td>Korea, South</td>
-                      <td>Overland Park</td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>Doris Greene</td>
-                      <td>$63,542</td>
-                      <td>Malawi</td>
-                      <td>Feldkirchen in Kärnten</td>
-                    </tr>
-                    <tr>
-                      <td>6</td>
-                      <td>Mason Porter</td>
-                      <td>$78,615</td>
-                      <td>Chile</td>
-                      <td>Gloucester</td>
-                    </tr>
+                    {data.map((item) => (
+                      <tr key={item.id}>
+                        {Object.values(item).map((value, index) => (
+                          <td key={index}>{value}</td>
+                        ))}
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </Card.Body>
@@ -157,5 +157,9 @@ function TableList() {
     </>
   );
 }
+
+TableList.propTypes = {
+  data: PropTypes.array.isRequired,
+};
 
 export default TableList;
