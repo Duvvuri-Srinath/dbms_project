@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import TableList from "views/TableList";
 
 export default function AllJobs() {
   const [data, setData] = useState([]);
@@ -44,16 +45,7 @@ export default function AllJobs() {
 
   return (
     <div>
-      {/* Render the fetched data */}
-      {data.map((job) => (
-        <div key={job.CID}>
-          <p>Company Name: {job.CNAME}</p>
-          <p>City: {job.City}</p>
-          <p>Profile: {job.Cprofile}</p>
-          <p>Status: {job.Cstatus}</p>
-          {/* Render other job details as needed */}
-        </div>
-      ))}
+      <TableList data={data} heading="All Jobs" />
     </div>
   );
 }

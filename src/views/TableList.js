@@ -13,76 +13,75 @@ import {
   Col
 } from "react-bootstrap";
 
-function TableList() {
+function TableList({data,heading}) {
   
-  const data = [
-    {
-      SROLL: '2019001',
-      SNAME: 'Alice',
-      CGPA: 8.5,
-      EMAIL: 'alice@example.com',
-      GENDER: 'f',
-      ANY_ARREARS: 'n',
-      PR_ID: 1,
-      BR_ID: 1,
-      Pass: 'password123',
-      OFFER_ID: 1,
-      OFFER_LOC: 'New York'
-    },
-    {
-      SROLL: '2019002',
-      SNAME: 'Bob',
-      CGPA: 8,
-      EMAIL: 'bob@example.com',
-      GENDER: 'm',
-      ANY_ARREARS: 'n',
-      PR_ID: 1,
-      BR_ID: 1,
-      Pass: 'password456',
-      OFFER_ID: 2,
-      OFFER_LOC: 'London'
-    },
-    {
-      SROLL: '2019003',
-      SNAME: 'Charlie',
-      CGPA: 7.5,
-      EMAIL: 'charlie@example.com',
-      GENDER: 'm',
-      ANY_ARREARS: 'y',
-      PR_ID: 2,
-      BR_ID: 2,
-      Pass: 'password789',
-      OFFER_ID: 3,
-      OFFER_LOC: 'Tokyo'
-    },
-    {
-      SROLL: '2019004',
-      SNAME: 'David',
-      CGPA: 7,
-      EMAIL: 'david@example.com',
-      GENDER: 'm',
-      ANY_ARREARS: 'n',
-      PR_ID: 2,
-      BR_ID: 2,
-      Pass: 'password101112',
-      OFFER_ID: 4,
-      OFFER_LOC: 'Paris'
-    },
-    {
-      SROLL: '2019005',
-      SNAME: 'Eve',
-      CGPA: 6.5,
-      EMAIL: 'eve@example.com',
-      GENDER: 'f',
-      ANY_ARREARS: 'y',
-      PR_ID: 3,
-      BR_ID: 3,
-      Pass: 'password131415',
-      OFFER_ID: 5,
-      OFFER_LOC: 'Sydney'
-    }
-  ]
-  
+  // const data = [
+  //   {
+  //     SROLL: '2019001',
+  //     SNAME: 'Alice',
+  //     CGPA: 8.5,
+  //     EMAIL: 'alice@example.com',
+  //     GENDER: 'f',
+  //     ANY_ARREARS: 'n',
+  //     PR_ID: 1,
+  //     BR_ID: 1,
+  //     Pass: 'password123',
+  //     OFFER_ID: 1,
+  //     OFFER_LOC: 'New York'
+  //   },
+  //   {
+  //     SROLL: '2019002',
+  //     SNAME: 'Bob',
+  //     CGPA: 8,
+  //     EMAIL: 'bob@example.com',
+  //     GENDER: 'm',
+  //     ANY_ARREARS: 'n',
+  //     PR_ID: 1,
+  //     BR_ID: 1,
+  //     Pass: 'password456',
+  //     OFFER_ID: 2,
+  //     OFFER_LOC: 'London'
+  //   },
+  //   {
+  //     SROLL: '2019003',
+  //     SNAME: 'Charlie',
+  //     CGPA: 7.5,
+  //     EMAIL: 'charlie@example.com',
+  //     GENDER: 'm',
+  //     ANY_ARREARS: 'y',
+  //     PR_ID: 2,
+  //     BR_ID: 2,
+  //     Pass: 'password789',
+  //     OFFER_ID: 3,
+  //     OFFER_LOC: 'Tokyo'
+  //   },
+  //   {
+  //     SROLL: '2019004',
+  //     SNAME: 'David',
+  //     CGPA: 7,
+  //     EMAIL: 'david@example.com',
+  //     GENDER: 'm',
+  //     ANY_ARREARS: 'n',
+  //     PR_ID: 2,
+  //     BR_ID: 2,
+  //     Pass: 'password101112',
+  //     OFFER_ID: 4,
+  //     OFFER_LOC: 'Paris'
+  //   },
+  //   {
+  //     SROLL: '2019005',
+  //     SNAME: 'Eve',
+  //     CGPA: 6.5,
+  //     EMAIL: 'eve@example.com',
+  //     GENDER: 'f',
+  //     ANY_ARREARS: 'y',
+  //     PR_ID: 3,
+  //     BR_ID: 3,
+  //     Pass: 'password131415',
+  //     OFFER_ID: 5,
+  //     OFFER_LOC: 'Sydney'
+  //   }
+  // ]
 
   return (
     <>
@@ -91,45 +90,10 @@ function TableList() {
           <Col md="12">
             <Card className="strpied-tabled-with-hover">
               <Card.Header>
-                <Card.Title as="h4">Striped Table with Hover</Card.Title>
-                <p className="card-category">
-                  Here is a subtitle for this table
-                </p>
+                <Card.Title as="h4">{heading}</Card.Title>
               </Card.Header>
               <Card.Body className="table-full-width table-responsive px-0">
                 <Table className="table-hover table-striped">
-                  <thead>
-                    <tr>
-                      {Object.keys(data[0]).map((key) => (
-                        <th className="border-0" key={key}>
-                          {key}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.map((item) => (
-                      <tr key={item.id}>
-                        {Object.values(item).map((value, index) => (
-                          <td key={index}>{value}</td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md="12">
-            <Card className="card-plain table-plain-bg">
-              <Card.Header>
-                <Card.Title as="h4">Table on Plain Background</Card.Title>
-                <p className="card-category">
-                  Here is a subtitle for this table
-                </p>
-              </Card.Header>
-              <Card.Body className="table-full-width table-responsive px-0">
-                <Table className="table-hover">
                   <thead>
                     <tr>
                       {Object.keys(data[0]).map((key) => (

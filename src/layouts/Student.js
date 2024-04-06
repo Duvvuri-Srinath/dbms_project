@@ -53,7 +53,7 @@ function Student() {
         <Sidebar color={color} image={hasImage ? image : ""} routes={needRoutes} />
         <div className="main-panel" ref={mainPanel}>
           <StudentNavbar />
-          <TableList/>
+          {/* {<TableList/>} */}
           <div className="content">
             <Switch>{getRoutes(routes)}</Switch>
           </div>
