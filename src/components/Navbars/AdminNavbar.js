@@ -1,25 +1,5 @@
-<<<<<<< HEAD
-/*!
 
-=========================================================
-* Light Bootstrap Dashboard React - v2.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/light-bootstrap-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React, { Component } from "react";
-=======
 import React from "react";
->>>>>>> e55202fce0cc405833f535472287fcef1f59d73e
 import { useLocation } from "react-router-dom";
 import { Navbar, Container, Nav, Dropdown, Button } from "react-bootstrap";
 
@@ -73,11 +53,8 @@ function Header() {
         </Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="nav mr-auto" navbar>
-<<<<<<< HEAD
-            <Nav.Item>
-=======
+
           <Nav.Item>
->>>>>>> e55202fce0cc405833f535472287fcef1f59d73e
               <Nav.Link
                 data-toggle="dropdown"
                 href="#pablo"
@@ -85,10 +62,7 @@ function Header() {
                 className="m-0"
               >
                 <i className="nc-icon nc-palette"></i>
-<<<<<<< HEAD
-                <span className="d-lg-none ml-1">Dashboard</span>
-=======
->>>>>>> e55202fce0cc405833f535472287fcef1f59d73e
+
               </Nav.Link>
             </Nav.Item>
             <Dropdown as={Nav.Item}>
