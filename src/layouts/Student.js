@@ -4,6 +4,7 @@ import { useLocation, Route, Switch } from "react-router-dom";
 import StudentNavbar from "components/Navbars/StudentNavbar";
 import Sidebar from "components/Sidebar/Sidebar";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
+import TableList from "views/TableList";
 
 import routes from "routes.js";
 
@@ -52,19 +53,14 @@ function Student() {
         <Sidebar color={color} image={hasImage ? image : ""} routes={needRoutes} />
         <div className="main-panel" ref={mainPanel}>
           <StudentNavbar />
+          <TableList/>
           <div className="content">
             <Switch>{getRoutes(routes)}</Switch>
           </div>
+          
         </div>
       </div>
-      <FixedPlugin
-        hasImage={hasImage}
-        setHasImage={() => setHasImage(!hasImage)}
-        color={color}
-        setColor={(color) => setColor(color)}
-        image={image}
-        setImage={(image) => setImage(image)}
-      />
+     
     </>
   );
 }
