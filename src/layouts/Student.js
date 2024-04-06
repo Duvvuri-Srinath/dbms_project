@@ -1,39 +1,16 @@
-<<<<<<< HEAD
-/*!
-
-=========================================================
-* Light Bootstrap Dashboard React - v2.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/light-bootstrap-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-=======
->>>>>>> e55202fce0cc405833f535472287fcef1f59d73e
 import React, { Component } from "react";
 import { useLocation, Route, Switch } from "react-router-dom";
 
-import AdminNavbar from "components/Navbars/AdminNavbar";
-<<<<<<< HEAD
-import Footer from "components/Footer/Footer";
-=======
->>>>>>> e55202fce0cc405833f535472287fcef1f59d73e
+import StudentNavbar from "components/Navbars/StudentNavbar";
 import Sidebar from "components/Sidebar/Sidebar";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
+import TableList from "views/TableList";
 
 import routes from "routes.js";
 
 import sidebarImage from "assets/img/sidebar-3.jpg";
 
-function Admin() {
+function Student() {
   const [image, setImage] = React.useState(sidebarImage);
   const [color, setColor] = React.useState("black");
   const [hasImage, setHasImage] = React.useState(true);
@@ -41,11 +18,7 @@ function Admin() {
   const mainPanel = React.useRef(null);
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
-<<<<<<< HEAD
-      if (prop.layout === "/admin") {
-=======
-      if (prop.layout === "/a") {
->>>>>>> e55202fce0cc405833f535472287fcef1f59d73e
+      if (prop.layout === "/s") {
         return (
           <Route
             path={prop.layout + prop.path}
@@ -58,12 +31,9 @@ function Admin() {
       }
     });
   };
-<<<<<<< HEAD
-=======
   const needRoutes = routes.filter((item) => {
-    return item.layout === "/a";
+    return item.layout === "/s";
   })
->>>>>>> e55202fce0cc405833f535472287fcef1f59d73e
   React.useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
@@ -80,32 +50,19 @@ function Admin() {
   return (
     <>
       <div className="wrapper">
-<<<<<<< HEAD
-        <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
-=======
         <Sidebar color={color} image={hasImage ? image : ""} routes={needRoutes} />
->>>>>>> e55202fce0cc405833f535472287fcef1f59d73e
         <div className="main-panel" ref={mainPanel}>
-          <AdminNavbar />
+          <StudentNavbar />
+          <TableList/>
           <div className="content">
             <Switch>{getRoutes(routes)}</Switch>
           </div>
-<<<<<<< HEAD
-          <Footer />
-=======
->>>>>>> e55202fce0cc405833f535472287fcef1f59d73e
+          
         </div>
       </div>
-      <FixedPlugin
-        hasImage={hasImage}
-        setHasImage={() => setHasImage(!hasImage)}
-        color={color}
-        setColor={(color) => setColor(color)}
-        image={image}
-        setImage={(image) => setImage(image)}
-      />
+     
     </>
   );
 }
 
-export default Admin;
+export default Student;

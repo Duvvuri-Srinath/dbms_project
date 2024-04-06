@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*!
 
 =========================================================
@@ -16,6 +17,8 @@
 
 */
 /*eslint-disable*/
+=======
+>>>>>>> e55202fce0cc405833f535472287fcef1f59d73e
 import React, { Component } from "react";
 
 import { Dropdown, Badge, Button, Form } from "react-bootstrap";
@@ -33,6 +36,7 @@ function FixedPlugin({
   image,
   setImage
 }) {
+<<<<<<< HEAD
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -48,6 +52,8 @@ function FixedPlugin({
   //   this.props.handleHasImage(!this.state.bg_checked);
   //   this.setState({ bg_checked: !this.state.bg_checked });
   // };
+=======
+>>>>>>> e55202fce0cc405833f535472287fcef1f59d73e
   return (
     <div className="fixed-plugin">
       <Dropdown>
