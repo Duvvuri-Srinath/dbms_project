@@ -3,6 +3,7 @@ import TableList from "views/TableList";
 
 export default function AllJobs() {
   const [data, setData] = useState([]);
+  const [fields, setFields] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -22,8 +23,12 @@ export default function AllJobs() {
         throw new Error("Failed to fetch data");
       }
       const jsonData = await response.json();
-      console.log("jsondatda:", jsonData);
+      console.log("jsondatda:", jsonData.fields);
+      console.log("jsondatda",jsonData.fields);
+      setFields(jsonData.fields);
       setData(jsonData.rows); // Accessing the 'rows' array in the response
+      console.log("jsonrows:", data);
+      console.log("jsondatda:", fields);
       setLoading(false);
     } catch (error) {
       setError(error);
@@ -45,7 +50,7 @@ export default function AllJobs() {
 
   return (
     <div>
-      <TableList data={data} heading="All Jobs" />
+      <TableList data={data} fields={fields} heading="All Jobs" />
     </div>
   );
 }

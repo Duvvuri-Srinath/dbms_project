@@ -13,7 +13,7 @@ import {
   Col
 } from "react-bootstrap";
 
-function TableList({data,heading}) {
+function TableList({data,fields,heading}) {
   
   // const data = [
   //   {
@@ -82,7 +82,7 @@ function TableList({data,heading}) {
   //     OFFER_LOC: 'Sydney'
   //   }
   // ]
-
+  console.log(fields);
   return (
     <>
       <Container fluid>
@@ -94,15 +94,15 @@ function TableList({data,heading}) {
               </Card.Header>
               <Card.Body className="table-full-width table-responsive px-0">
                 <Table className="table-hover table-striped">
-                  <thead>
-                    <tr>
-                      {Object.keys(data[0]).map((key) => (
-                        <th className="border-0" key={key}>
-                          {key}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
+                <thead>
+                  <tr>
+                    {fields.map((value, index) => (
+                      <th className="border-0" key={index}>
+                      {value}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
                   <tbody>
                     {data.map((item) => (
                       <tr key={item.id}>
