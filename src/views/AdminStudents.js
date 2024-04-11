@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
 import TableList from "views/TableList";
 
-export default function AllJobs() {
+export default function AdminStudents() {
   const [data, setData] = useState([]);
-  const [fields, setFields] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [fields, setFields] = useState([]);
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:3000/s/AllJobs", {
+        console.log("token : ", localStorage.getItem('token'));
+      const response = await fetch("http://localhost:3000/a/allStudents", {
         method: "GET",
         headers: { 
-          "Content-Type": "application/json",
-          "Authorization": "Bearer "+localStorage.getItem("token"),
-      },
+            "Content-Type": "application/json",
+            "Authorization": "Bearer "+localStorage.getItem("token"),
+        },
       })
-      .then((response) => {
-        console.log(response, "here");
-        console.log("Hi..");
+        .then((response) => {
+          console.log(response, "here");
           return response;
         })
         .catch((err) => console.log("Fetch Error: ", err));
@@ -26,12 +26,9 @@ export default function AllJobs() {
         throw new Error("Failed to fetch data");
       }
       const jsonData = await response.json();
-      console.log("jsondatda:", jsonData.fields);
-      console.log("jsondatda",jsonData.fields);
-      setFields(jsonData.fields);
+      console.log("jsondatda:", jsonData);
       setData(jsonData.rows); // Accessing the 'rows' array in the response
-      console.log("jsonrows:", data);
-      console.log("jsondatda:", fields);
+      setFields(jsonData.fields); // Accessing the 'columns' array in
       setLoading(false);
     } catch (error) {
       setError(error);
@@ -53,7 +50,7 @@ export default function AllJobs() {
 
   return (
     <div>
-      <TableList data={data} fields={fields} heading="All Jobs" />
+      <TableList data={data} fields={fields} heading="All Students" />
     </div>
   );
 }

@@ -15,13 +15,14 @@ import LatestUpdates from "views/LatestUpdates";
 import AddNewJob from "views/AddNewJob";
 import AdminHome from "views/AdminHome";
 import AdminJobs from "views/AdminJobs";
+import AdminStudents from "views/AdminStudents";
 import CompanyHome from "views/CompanyHome";
 import ApprovedJobs from "views/ApprovedJobs";
 import PendingJobs from "views/PendingJobs";
 import AllOffers from "views/AllOffers";
 import PostUpdate from "views/PostUpdate";
 import UpdateProfile from "views/UpdateProfile";
-
+import AdminProfile from "views/AdminProfile";
 const dashboardRoutes = [
   // {
     
@@ -89,6 +90,13 @@ const dashboardRoutes = [
     layout: "/a"
   },
   {
+    path: "/profile",
+    name: "Profile",
+    icon: "nc-icon nc-circle-09",
+    component: AdminProfile,
+    layout: "/a"
+  },
+  {
     path: "/Addnewjob",
     name: "Add New Job",
     icon: "nc-icon nc-circle-09",
@@ -100,6 +108,13 @@ const dashboardRoutes = [
     name: "All Jobs",
     icon: "nc-icon nc-circle-09",
     component: AdminJobs,
+    layout: "/a"
+  },
+  {
+    path: "/allStudents",
+    name: "All Students",
+    icon: "nc-icon nc-circle-09",
+    component: AdminStudents,
     layout: "/a"
   },
   {

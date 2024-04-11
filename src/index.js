@@ -23,7 +23,7 @@ root.render(
       <Route path="/c" render={(props) => <CompanyLayout {...props} />} />
       <Route path="/a" render={(props) => <AdminLayout {...props} />} />
       <Route path="/login" render={(props) => <LoginLayout {...props} />} />
-      <Redirect from="/" to="/s/dashboard" />
+      <Redirect from="/" to="/login" />
     </Switch>
   </BrowserRouter>
 );

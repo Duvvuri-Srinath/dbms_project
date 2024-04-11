@@ -83,6 +83,8 @@ function TableList({data,fields,heading}) {
   //   }
   // ]
   console.log(fields);
+  console.log(data);
+  console.log(heading);
   return (
     <>
       <Container fluid>

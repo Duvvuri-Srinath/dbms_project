@@ -40,11 +40,11 @@ const Login = () => {
 
       // Redirect based on role
       if (role === 'admin') {
-        history.push('/admin-dashboard');
+        history.push('/a');
       } else if (role === 'company') {
-        history.push('/company-dashboard');
+        history.push('/c');
       } else if (role === 'student') {
-        history.push('/student-dashboard');
+        history.push('/s');
       }
     } catch (error) {
       alert(error.message);

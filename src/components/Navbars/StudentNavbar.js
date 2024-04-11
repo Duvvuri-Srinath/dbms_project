@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Redirect, useHistory } from "react-router-dom";
 import { Navbar, Container, Nav, Dropdown, Button } from "react-bootstrap";
 
 import routes from "routes.js";
@@ -26,6 +26,15 @@ function Header() {
     }
     return "Brand";
   };
+
+  const history = useHistory();
+
+  const LogoutHandler = () => {
+    console.log("Logout");
+    localStorage.removeItem("token");
+    history.push("/login"); // Redirect to the login page
+  };
+
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -180,7 +189,7 @@ function Header() {
                 href="#pablo"
                 onClick={(e) => e.preventDefault()}
               >
-                <span className="no-icon">Log out</span>
+                <span className="no-icon" onClick={LogoutHandler}>Log out</span>
               </Nav.Link>
             </Nav.Item>
           </Nav>
