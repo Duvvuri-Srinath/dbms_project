@@ -12,6 +12,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import StudentLayout from "layouts/Student.js";
 import CompanyLayout from "layouts/Company.js";
 import AdminLayout from "layouts/Admin.js";
+import LoginLayout from "layouts/Login.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -21,6 +22,7 @@ root.render(
       <Route path="/s" render={(props) => <StudentLayout {...props} />} />
       <Route path="/c" render={(props) => <CompanyLayout {...props} />} />
       <Route path="/a" render={(props) => <AdminLayout {...props} />} />
+      <Route path="/login" render={(props) => <LoginLayout {...props} />} />
       <Redirect from="/" to="/s/dashboard" />
     </Switch>
   </BrowserRouter>
