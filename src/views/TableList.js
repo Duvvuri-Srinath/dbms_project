@@ -138,6 +138,7 @@ function TableList({ data, fields, heading, apply = false }) {
                     </tr>
                   </thead>
                   <tbody>
+                    {console.log(data[0])}
                     {data && (data.map((item) => (
                       <tr key={item.id}>
                         {Object.values(item).map((value, index) => (
@@ -146,7 +147,7 @@ function TableList({ data, fields, heading, apply = false }) {
                         {apply && (
                           <td>
                             <form onSubmit={handleFormSubmit}>
-                              <input type="hidden" name="user_id" value={item}></input>
+                              <input type="hidden" name="user_id" value={item.ID}></input>
                               <input type="submit" value="Apply" style={{
                                   width: "100%",
                                   padding: "8px 12px",
