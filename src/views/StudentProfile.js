@@ -1,19 +1,104 @@
-import React from "react";
-
-// react-bootstrap components
+import React, { useState, useEffect } from "react";
 import {
-  Badge,
   Button,
   Card,
   Form,
-  Navbar,
-  Nav,
   Container,
   Row,
   Col
 } from "react-bootstrap";
 
 function StudentProfile() {
+  // State to hold form data
+  const [formData, setFormData] = useState({
+    SROLL: "",
+    SNAME: "",
+    CGPA: "",
+    EMAIL: "",
+    GENDER: "",
+    ANY_ARREARS: "",
+    CV_LINK: "",
+    GITHUB_LINK: "",
+    LINKEDIN_LINK: "",
+    ABOUT_ME: "",
+  });
+
+  // Function to fetch data from the API
+  const fetchData = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/s/user", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+
+      // Parse the JSON response
+      const data = await response.json();
+
+      // Update the form data state with the fetched data
+      setFormData({
+        SROLL: data.SROLL || "",
+        SNAME: data.SNAME || "",
+        CGPA: data.CGPA || "",
+        EMAIL: data.EMAIL || "",
+        GENDER: data.GENDER || "",
+        ANY_ARREARS: data.ANY_ARREARS || "",
+        CV_LINK: data.CV_LINK || "",
+        GITHUB_LINK: data.GITHUB_LINK || "",
+        LINKEDIN_LINK: data.LINKEDIN_LINK || "",
+        ABOUT_ME: data.ABOUT_ME || "",
+      });
+
+      console.log("Fetched data:", data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  // Use useEffect to fetch data when the component mounts
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // Handle form input changes
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Handle form submission and send POST request to API
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("http://localhost:3000/s/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update profile");
+      }
+
+      // Optionally, you can fetch data again after updating
+      fetchData();
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
+  };
+
   return (
     <>
       <Container fluid>
@@ -21,85 +106,141 @@ function StudentProfile() {
           <Col md="8">
             <Card>
               <Card.Header>
-                <Card.Title as="h4">Edit Profile</Card.Title>
+                <Card.Title as="h4">My Profile</Card.Title>
               </Card.Header>
               <Card.Body>
-                <Form>
+                <Form onSubmit={handleFormSubmit}>
                   <Row>
                     <Col className="pr-1" md="6">
                       <Form.Group>
-                        <label>First Name</label>
+                        <label>Name</label>
                         <Form.Control
-                          defaultValue="Mike"
+                          name="SNAME"
+                          value={formData.SNAME}
                           placeholder="First Name"
                           type="text"
-                        ></Form.Control>
+                          disabled
+                        />
                       </Form.Group>
                     </Col>
                     <Col className="pl-1" md="6">
                       <Form.Group>
-                        <label>Last Name</label>
-                        <Form.Control
-                          defaultValue="Andrew"
-                          placeholder="Last Name"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="pr-1" md="5">
-                      <Form.Group>
-                        <label> CGPA</label>
-                        <Form.Control
-                          defaultValue="7.0"
-                          disabled
-                          placeholder="CGPA"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-1" md="4">
-                      <Form.Group>
-                        <label htmlFor="exampleInputEmail1">
-                          Email address
-                        </label>
-                        <Form.Control
-                          defaultValue="michael23@gmail.com"
-                          placeholder="Email"
-                          type="email"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-1" md="3">
-                      <Form.Group>
                         <label>Roll Number</label>
                         <Form.Control
+                          name="SROLL"
+                          value={formData.SROLL}
                           placeholder="Roll No"
                           type="text"
-                        ></Form.Control>
+                          disabled
+                        />
                       </Form.Group>
                     </Col>
                   </Row>
                   <Row>
-                    <Col md="6">
+                    <Col className="pr-1" md="6">
                       <Form.Group>
-                        <label>Active Backlog</label>
+                        <label>CGPA</label>
                         <Form.Control
-                          defaultValue="0"
-                          placeholder="Active Backlog"
+                          name="CGPA"
+                          value={formData.CGPA}
+                          placeholder="CGPA"
                           type="text"
-                        ></Form.Control>
+                          disabled
+                        />
                       </Form.Group>
                     </Col>
+                    <Col className="pl-1" md="6">
+                      <Form.Group>
+                        <label>Email Address</label>
+                        <Form.Control
+                          name="EMAIL"
+                          value={formData.EMAIL}
+                          placeholder="Email"
+                          type="email"
+                          onChange={handleInputChange}
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
                     <Col md="6">
                       <Form.Group>
                         <label>Gender</label>
                         <Form.Control
-                          defaultValue="Male"
+                          name="GENDER"
+                          value={formData.GENDER}
                           placeholder="Gender"
                           type="text"
-                        ></Form.Control>
+                          disabled
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md="6">
+                      <Form.Group>
+                        <label>Active Backlogs</label>
+                        <Form.Control
+                          name="ANY_ARREARS"
+                          value={formData.ANY_ARREARS}
+                          placeholder="Active Backlogs"
+                          type="text"
+                          disabled
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md="12">
+                      <Form.Group>
+                        <label>Resume Link</label>
+                        <Form.Control
+                          name="CV_LINK"
+                          value={formData.CV_LINK}
+                          placeholder="Resume Link"
+                          type="text"
+                          onChange={handleInputChange}
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md="12">
+                      <Form.Group>
+                        <label>GitHub Link</label>
+                        <Form.Control
+                          name="GITHUB_LINK"
+                          value={formData.GITHUB_LINK}
+                          placeholder="GitHub Link"
+                          type="text"
+                          onChange={handleInputChange}
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md="12">
+                      <Form.Group>
+                        <label>LinkedIn Link</label>
+                        <Form.Control
+                          name="LINKEDIN_LINK"
+                          value={formData.LINKEDIN_LINK}
+                          placeholder="LinkedIn Link"
+                          type="text"
+                          onChange={handleInputChange}
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md="12">
+                      <Form.Group>
+                        <label>About Me</label>
+                        <Form.Control
+                          name="ABOUT_ME"
+                          value={formData.ABOUT_ME}
+                          placeholder="About Me"
+                          type="textarea"
+                          onChange={handleInputChange}
+                        />
                       </Form.Group>
                     </Col>
                   </Row>
