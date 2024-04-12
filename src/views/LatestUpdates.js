@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TableList from "views/TableList";
 
-export default function LatestUpdates() {
+export default function AllJobs() {
   const [data, setData] = useState([]);
   const [fields, setFields] = useState([]);
   const [error, setError] = useState(null);
@@ -9,16 +9,19 @@ export default function LatestUpdates() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:3000/s/Updates", {
+      const response = await fetch("http://localhost:3000/s/updateProfile", {
         method: "GET",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": "Bearer "+localStorage.getItem("token"),
+      },
       })
-        .then((response) => {
-          console.log(response, "here");
+      .then((response) => {
+        console.log(response, "here");
+        console.log("Hi..");
           return response;
         })
         .catch((err) => console.log("Fetch Error: ", err));
-      console.log("Hi..");
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
@@ -50,7 +53,7 @@ export default function LatestUpdates() {
 
   return (
     <div>
-      <TableList data={data} fields={fields} heading="Notifications" />
+      <TableList data={data} fields={fields} heading="All Jobs" />
     </div>
   );
 }

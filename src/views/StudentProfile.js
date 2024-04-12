@@ -7,6 +7,7 @@ import {
   Row,
   Col
 } from "react-bootstrap";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 function StudentProfile() {
   // State to hold form data
@@ -17,10 +18,10 @@ function StudentProfile() {
     EMAIL: "",
     GENDER: "",
     ANY_ARREARS: "",
-    CV_LINK: "",
-    GITHUB_LINK: "",
-    LINKEDIN_LINK: "",
-    ABOUT_ME: "",
+    RESUME: "",
+    GITHUB: "",
+    LINKEDIN: "",
+    ABOUT: "",
   });
 
   // Function to fetch data from the API
@@ -37,7 +38,7 @@ function StudentProfile() {
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
-
+            
       // Parse the JSON response
       const data = await response.json();
 
@@ -49,10 +50,10 @@ function StudentProfile() {
         EMAIL: data.EMAIL || "",
         GENDER: data.GENDER || "",
         ANY_ARREARS: data.ANY_ARREARS || "",
-        CV_LINK: data.CV_LINK || "",
-        GITHUB_LINK: data.GITHUB_LINK || "",
-        LINKEDIN_LINK: data.LINKEDIN_LINK || "",
-        ABOUT_ME: data.ABOUT_ME || "",
+        RESUME: data.RESUME || "",
+        GITHUB: data.GITHUB || "",
+        LINKEDIN: data.LINKEDIN || "",
+        ABOUT: data.ABOUT || "",
       });
 
       console.log("Fetched data:", data);
@@ -79,7 +80,7 @@ function StudentProfile() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/s/user", {
+      const response = await fetch("http://localhost:3000/s/updateProfile", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -193,8 +194,8 @@ function StudentProfile() {
                       <Form.Group>
                         <label>Resume Link</label>
                         <Form.Control
-                          name="CV_LINK"
-                          value={formData.CV_LINK}
+                          name="RESUME"
+                          value={formData.RESUME}
                           placeholder="Resume Link"
                           type="text"
                           onChange={handleInputChange}
@@ -207,8 +208,8 @@ function StudentProfile() {
                       <Form.Group>
                         <label>GitHub Link</label>
                         <Form.Control
-                          name="GITHUB_LINK"
-                          value={formData.GITHUB_LINK}
+                          name="GITHUB"
+                          value={formData.GITHUB}
                           placeholder="GitHub Link"
                           type="text"
                           onChange={handleInputChange}
@@ -221,8 +222,8 @@ function StudentProfile() {
                       <Form.Group>
                         <label>LinkedIn Link</label>
                         <Form.Control
-                          name="LINKEDIN_LINK"
-                          value={formData.LINKEDIN_LINK}
+                          name="LINKEDIN"
+                          value={formData.LINKEDIN}
                           placeholder="LinkedIn Link"
                           type="text"
                           onChange={handleInputChange}
@@ -235,8 +236,8 @@ function StudentProfile() {
                       <Form.Group>
                         <label>About Me</label>
                         <Form.Control
-                          name="ABOUT_ME"
-                          value={formData.ABOUT_ME}
+                          name="ABOUT"
+                          value={formData.ABOUT}
                           placeholder="About Me"
                           type="textarea"
                           onChange={handleInputChange}
