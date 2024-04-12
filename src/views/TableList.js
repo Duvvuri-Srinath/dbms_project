@@ -84,6 +84,39 @@ function TableList({ data, fields, heading, apply = false }) {
   console.log(fields);
   console.log(data);
   console.log(heading);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    try {
+      const response = await fetch("http://localhost:3000/s/apply", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({jid : formData.get('user_id')}),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to Apply");
+      }
+      event.target.reset();
+      // Optionally, you can fetch data again after updating
+      fetchData();
+    } catch (error) {
+      console.error("Error Applying", error);
+    }
+  };
+
   return (
     <>
       <Container fluid>
@@ -112,24 +145,18 @@ function TableList({ data, fields, heading, apply = false }) {
                         ))}
                         {apply && (
                           <td>
-                            <form
-                              action="http://localhost:3000/s/"
-                              method="GET"
-                            >
-                              <input
-                                type="submit"
-                                value="Apply"
-                                style={{
+                            <form onSubmit={handleFormSubmit}>
+                              <input type="hidden" name="user_id" value={item}></input>
+                              <input type="submit" value="Apply" style={{
                                   width: "100%",
                                   padding: "8px 12px",
                                   fontSize: "16px",
                                   backgroundColor: "#007bff",
                                   color: "#ffffff",
-                                  border: "none",
+                                  border: "none", 
                                   borderRadius: "5px",
                                   cursor: "pointer",
-                                }}
-                              />
+                                }}/>
                             </form>
                           </td>
                         )}

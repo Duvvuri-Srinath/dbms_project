@@ -11,7 +11,6 @@ import AllJobs from "views/AllJobs";
 import EligibleJobs from "views/EligibleJobs";
 import AppliedJobs from "views/AppliedJobs";
 import Interviews from "views/Interviews";
-import Offers from "views/Offers";
 import LatestUpdates from "views/LatestUpdates";
 import AddNewJob from "views/AddNewJob";
 import AdminHome from "views/AdminHome";
@@ -75,13 +74,6 @@ const dashboardRoutes = [
     name: "Interviews",
     icon: "nc-icon nc-circle-09",
     component: Interviews,
-    layout: "/s"
-  },
-  {
-    path: "/Offers",
-    name: "Offers",
-    icon: "nc-icon nc-circle-09",
-    component: Offers,
     layout: "/s"
   },
   {
