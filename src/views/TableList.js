@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-// react-bootstrap components
+  // react-bootstrap components
   Badge,
   Button,
   Card,
@@ -10,11 +10,10 @@ import {
   Table,
   Container,
   Row,
-  Col
+  Col,
 } from "react-bootstrap";
 
-function TableList({data,fields,heading}) {
-  
+function TableList({ data, fields, heading, apply = false }) {
   // const data = [
   //   {
   //     SROLL: '2019001',
@@ -96,23 +95,46 @@ function TableList({data,fields,heading}) {
               </Card.Header>
               <Card.Body className="table-full-width table-responsive px-0">
                 <Table className="table-hover table-striped">
-                <thead>
-                  <tr>
-                    {fields.map((value, index) => (
-                      <th className="border-0" key={index}>
-                      {value}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
+                  <thead>
+                    <tr>
+                      {fields.map((value, index) => (
+                        <th className="border-0" key={index}>
+                          {value}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
                   <tbody>
-                    {data.map((item) => (
+                    {data && (data.map((item) => (
                       <tr key={item.id}>
                         {Object.values(item).map((value, index) => (
                           <td key={index}>{value}</td>
                         ))}
+                        {apply && (
+                          <td>
+                            <form
+                              action="http://localhost:3000/s/"
+                              method="GET"
+                            >
+                              <input
+                                type="submit"
+                                value="Apply"
+                                style={{
+                                  width: "100%",
+                                  padding: "8px 12px",
+                                  fontSize: "16px",
+                                  backgroundColor: "#007bff",
+                                  color: "#ffffff",
+                                  border: "none",
+                                  borderRadius: "5px",
+                                  cursor: "pointer",
+                                }}
+                              />
+                            </form>
+                          </td>
+                        )}
                       </tr>
-                    ))}
+                    )))}
                   </tbody>
                 </Table>
               </Card.Body>

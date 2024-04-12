@@ -8,6 +8,7 @@ import Notifications from "views/Notifications.js";
 import Upgrade from "views/Upgrade.js";
 import StudentHome from "views/StudentHome.js";
 import AllJobs from "views/AllJobs";
+import EligibleJobs from "views/EligibleJobs";
 import AppliedJobs from "views/AppliedJobs";
 import Interviews from "views/Interviews";
 import Offers from "views/Offers";
@@ -55,12 +56,20 @@ const dashboardRoutes = [
     layout: "/s"
   },
   {
+    path: "/EligibleJobs",
+    name: "Eligible Jobs",
+    icon: "nc-icon nc-circle-09",
+    component: EligibleJobs,
+    layout: "/s"
+  },
+  {
     path: "/AppliedJobs",
     name: "Applied Jobs",
     icon: "nc-icon nc-circle-09",
     component: AppliedJobs,
     layout: "/s"
   },
+  
   {
     path: "/Interviews",
     name: "Interviews",

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import TableList from "views/TableList";
 
-export default function AppliedJobs() {
+export default function EligibleJobs() {
   const [data, setData] = useState([]);
   const [fields, setFields] = useState([]);
+  const [apply, setApply] = useState(true);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     try {
-      console.log("Get Applied Jobs")
-      const response = await fetch("http://localhost:3000/s/appliedJobs", {
+      const response = await fetch("http://localhost:3000/s/eligibleJobs", {
         method: "GET",
         headers: { 
           "Content-Type": "application/json",
@@ -18,18 +18,21 @@ export default function AppliedJobs() {
       },
       })
       .then((response) => {
-          console.log(response, "applied");
+        console.log(response, "here");
+        console.log("Hi..");
           return response;
         })
         .catch((err) => console.log("Fetch Error: ", err));
-      console.log("Hi..");
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
       const jsonData = await response.json();
-      console.log("jsondatda:", jsonData);
+      console.log("jsondatda:", jsonData.fields);
+      console.log("jsondatda",jsonData.fields);
       setFields(jsonData.fields);
       setData(jsonData.rows); // Accessing the 'rows' array in the response
+      console.log("jsonrows:", data);
+      console.log("jsondatda:", fields);
       setLoading(false);
     } catch (error) {
       setError(error);
@@ -51,7 +54,7 @@ export default function AppliedJobs() {
 
   return (
     <div>
-      <TableList data={data} fields = {fields} heading="Applied Jobs" />
+      <TableList data={data} fields={fields} apply={true} heading="Eligible Jobs" />
     </div>
   );
 }
