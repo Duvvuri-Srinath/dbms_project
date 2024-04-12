@@ -26,7 +26,7 @@ import UpdateProfile from "views/UpdateProfile";
 import AdminProfile from "views/AdminProfile";
 const dashboardRoutes = [
   // {
-    
+
   //   path: "/upgrade",
   //   name: "Upgrade to PRO",
   //   icon: "nc-icon nc-alien-33",
@@ -39,142 +39,142 @@ const dashboardRoutes = [
     name: "User Profile",
     icon: "nc-icon nc-circle-09",
     component: UserProfile,
-    layout: "/s"
+    layout: "/s",
   },
   {
     path: "/Home",
     name: "Home",
     icon: "nc-icon nc-circle-09",
     component: StudentHome,
-    layout: "/s"
+    layout: "/s",
   },
   {
     path: "/Alljobs",
     name: "All Jobs",
     icon: "nc-icon nc-circle-09",
     component: AllJobs,
-    layout: "/s"
+    layout: "/s",
   },
   {
     path: "/EligibleJobs",
     name: "Eligible Jobs",
     icon: "nc-icon nc-circle-09",
     component: EligibleJobs,
-    layout: "/s"
+    layout: "/s",
   },
   {
     path: "/AppliedJobs",
     name: "Applied Jobs",
     icon: "nc-icon nc-circle-09",
     component: AppliedJobs,
-    layout: "/s"
+    layout: "/s",
   },
-  
+
   {
     path: "/Interviews",
     name: "Interviews",
     icon: "nc-icon nc-circle-09",
     component: Interviews,
-    layout: "/s"
+    layout: "/s",
   },
   {
     path: "/Offers",
     name: "Offers",
     icon: "nc-icon nc-circle-09",
     component: Offers,
-    layout: "/s"
+    layout: "/s",
   },
   {
     path: "/LatestUpdates",
     name: "Latest Updates",
     icon: "nc-icon nc-circle-09",
     component: LatestUpdates,
-    layout: "/s"
+    layout: "/s",
   },
   {
     path: "/Home",
     name: "Home",
     icon: "nc-icon nc-circle-09",
     component: AdminHome,
-    layout: "/a"
+    layout: "/a",
   },
   {
     path: "/profile",
     name: "Profile",
     icon: "nc-icon nc-circle-09",
     component: AdminProfile,
-    layout: "/a"
-  },
-  {
-    path: "/Addnewjob",
-    name: "Add New Job",
-    icon: "nc-icon nc-circle-09",
-    component: AddNewJob,
-    layout: "/a"
-  },
-  {
-    path: "/jobs",
-    name: "All Jobs",
-    icon: "nc-icon nc-circle-09",
-    component: AdminJobs,
-    layout: "/a"
-  },
-  {
-    path: "/allStudents",
-    name: "All Students",
-    icon: "nc-icon nc-circle-09",
-    component: AdminStudents,
-    layout: "/a"
+    layout: "/a",
   },
   {
     path: "/home",
     name: "Home",
     icon: "nc-icon nc-circle-09",
     component: CompanyHome,
-    layout: "/c"
+    layout: "/c",
+  },
+  {
+    path: "/Addnewjob",
+    name: "Add New Job",
+    icon: "nc-icon nc-circle-09",
+    component: AddNewJob,
+    layout: "/c",
+  },
+  {
+    path: "/jobs",
+    name: "All Jobs",
+    icon: "nc-icon nc-circle-09",
+    component: AdminJobs,
+    layout: "/a",
+  },
+  {
+    path: "/allStudents",
+    name: "All Students",
+    icon: "nc-icon nc-circle-09",
+    component: AdminStudents,
+    layout: "/a",
   },
   {
     path: "/Approvedjobs",
     name: "Approved Jobs",
     icon: "nc-icon nc-circle-09",
     component: ApprovedJobs,
-    layout: "/c"
+    layout: "/a",
   },
   {
     path: "/Pendingjobs",
     name: "Pending Jobs",
     icon: "nc-icon nc-circle-09",
     component: PendingJobs,
-    layout: "/c"
+    layout: "/a",
   },
   {
     path: "/interviews",
     name: "All Interviews",
     icon: "nc-icon nc-circle-09",
     component: Interviews,
-    layout: "/c"
+    layout: "/c",
   },
   {
     path: "/offers",
     name: "All Offers",
     icon: "nc-icon nc-circle-09",
-    component: AllOffers ,
-    layout: "/c"
+    component: AllOffers,
+    layout: "/a",
   },
   {
     path: "/postupdates",
     name: "Post Updates",
     icon: "nc-icon nc-circle-09",
-    component: PostUpdate ,
-    layout: "/c"
+    component: PostUpdate,
+    layout: "/a",
   },
   {
     path: "/updateprofile",
     name: "Update Profile",
     icon: "nc-icon nc-circle-09",
-    component: UpdateProfile ,
-    layout: "/c"
-  }
+    component: UpdateProfile,
+    layout: "/c",
+  },
   // {
   //   path: "/dashboard",
   //   name: "Dashboard",
