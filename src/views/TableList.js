@@ -105,7 +105,7 @@ function TableList({ data, fields, heading, apply = false }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.map((item) => (
+                    {data && (data.map((item) => (
                       <tr key={item.id}>
                         {Object.values(item).map((value, index) => (
                           <td key={index}>{value}</td>
@@ -134,7 +134,7 @@ function TableList({ data, fields, heading, apply = false }) {
                           </td>
                         )}
                       </tr>
-                    ))}
+                    )))}
                   </tbody>
                 </Table>
               </Card.Body>

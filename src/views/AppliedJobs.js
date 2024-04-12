@@ -3,17 +3,22 @@ import TableList from "views/TableList";
 
 export default function AppliedJobs() {
   const [data, setData] = useState([]);
+  const [fields, setFields] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:3000/s/AllJobs", {
+      console.log("Get Applied Jobs")
+      const response = await fetch("http://localhost:3000/s/appliedJobs", {
         method: "GET",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": "Bearer "+localStorage.getItem("token"),
+      },
       })
-        .then((response) => {
-          console.log(response, "here");
+      .then((response) => {
+          console.log(response, "applied");
           return response;
         })
         .catch((err) => console.log("Fetch Error: ", err));
@@ -23,6 +28,7 @@ export default function AppliedJobs() {
       }
       const jsonData = await response.json();
       console.log("jsondatda:", jsonData);
+      setFields(jsonData.fields);
       setData(jsonData.rows); // Accessing the 'rows' array in the response
       setLoading(false);
     } catch (error) {
@@ -45,7 +51,7 @@ export default function AppliedJobs() {
 
   return (
     <div>
-      <TableList data={data} heading="All Jobs" />
+      <TableList data={data} fields = {fields} heading="Applied Jobs" />
     </div>
   );
 }
