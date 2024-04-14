@@ -204,13 +204,13 @@ const dashboardRoutes = [
   //   component: Maps,
   //   layout: "/s"
   // },
-  // {
-  //   path: "/notifications",
-  //   name: "Notifications",
-  //   icon: "nc-icon nc-bell-55",
-  //   component: Notifications,
-  //   layout: "/s"
-  // }
+  {
+    path: "/notifications",
+    name: "Notifications",
+    icon: "nc-icon nc-bell-55",
+    component: Notifications,
+    layout: "/a"
+  }
 ];
 
 export default dashboardRoutes;

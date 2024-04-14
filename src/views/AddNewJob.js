@@ -31,6 +31,7 @@ function JobRegistrationForm() {
         throw new Error("Failed to fetch data");
       }
       const jsonData = await response.json();
+      console.log(jsonData)
       setBranches(jsonData.rows); // Accessing the 'rows' array in the response
       setLoading(false);
     } catch (err) {
@@ -46,6 +47,8 @@ function JobRegistrationForm() {
 
   const handleBranchChange = (e) => {
     const { value } = e.target;
+    console.log(e.target);
+    console.log(value);
     const updatedBranches = [...formData.Branches];
     if (updatedBranches.includes(value)) {
       // Remove branch if already selected
@@ -59,10 +62,12 @@ function JobRegistrationForm() {
       ...formData,
       Branches: updatedBranches,
     });
+    console.log(formData.Branches);
   };
 
   const handleCriteriaChange = (e) => {
     const { value } = e.target;
+    console.log(value);
     const updatedBranches = [...formData.Gender];
     if (updatedBranches.includes(value)) {
       // Remove branch if already selected
@@ -76,6 +81,7 @@ function JobRegistrationForm() {
       ...formData,
       Gender: updatedBranches,
     });
+    console.log(formData.Gender);
   };
 
   const handleSubmit = async (event) => {
@@ -336,11 +342,11 @@ function JobRegistrationForm() {
                   >
                     <input
                       type="checkbox"
-                      value={value}
-                      checked={formData.Branches.includes(value)}
+                      value={value.BR_ID}
+                      checked={formData.Branches.includes(String(value.BR_ID))}
                       onChange={handleBranchChange}
                     />
-                    {value}
+                    {value.BR_NAME}
                   </label>
                 ))}
               </div>

@@ -52,9 +52,33 @@ export default function EligibleJobs() {
     return <div>Error: {error.message}</div>;
   }
 
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    try {
+      const response = await fetch("http://localhost:3000/s/apply", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({jid : formData.get('user_id')}),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to Apply");
+      }
+      event.target.reset();
+      // Optionally, you can fetch data again after updating
+      fetchData();
+    } catch (error) {
+      console.error("Error Applying", error);
+    }
+  };
+
   return (
     <div>
-      <TableList data={data} fields={fields} apply={true} val={"Apply"} heading="Eligible Jobs" />
+      <TableList data={data} fields={fields} apply={true} val={"Apply"} handlesubmit={handleFormSubmit} heading="Eligible Jobs" />
     </div>
   );
 }

@@ -13,42 +13,10 @@ import {
   Col,
 } from "react-bootstrap";
 
-function TableList({ data, fields, heading, apply = false, val}) {
+function TableList({ data, fields, heading, apply = false, approve= false, reject=false, val1, val,handlesubmit, handlesubmit1}) {
   console.log(fields);
   console.log(data);
   console.log(heading);
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    try {
-      const response = await fetch("http://localhost:3000/s/apply", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({jid : formData.get('user_id')}),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to Apply");
-      }
-      event.target.reset();
-      // Optionally, you can fetch data again after updating
-      fetchData();
-    } catch (error) {
-      console.error("Error Applying", error);
-    }
-  };
 
   return (
     <>
@@ -79,13 +47,47 @@ function TableList({ data, fields, heading, apply = false, val}) {
                         ))}
                         {apply && (
                           <td>
-                            <form onSubmit={handleFormSubmit}>
+                            <form onSubmit={handlesubmit}>
                               <input type="hidden" name="user_id" value={item.ID}></input>
                               <input type="submit" value={val} style={{
                                   width: "100%",
                                   padding: "8px 12px",
                                   fontSize: "16px",
                                   backgroundColor: "#007bff",
+                                  color: "#ffffff",
+                                  border: "none", 
+                                  borderRadius: "5px",
+                                  cursor: "pointer",
+                                }}/>
+                            </form>
+                          </td>
+                        )}
+                        {approve && (
+                          <td>
+                            <form onSubmit={handlesubmit}>
+                              <input type="hidden" name="user_id" value={item.ID}></input>
+                              <input type="submit" value={val} style={{
+                                  width: "100%",
+                                  padding: "8px 12px",
+                                  fontSize: "16px",
+                                  backgroundColor: "#007bff",
+                                  color: "#ffffff",
+                                  border: "none", 
+                                  borderRadius: "5px",
+                                  cursor: "pointer",
+                                }}/>
+                            </form>
+                          </td>
+                        )}
+                        {reject && (
+                          <td>
+                            <form onSubmit={handlesubmit1}>
+                              <input type="hidden" name="user_id" value={item.ID}></input>
+                              <input type="submit" value={val1} style={{
+                                  width: "100%",
+                                  padding: "8px 12px",
+                                  fontSize: "16px",
+                                  backgroundColor: "#FF0000",
                                   color: "#ffffff",
                                   border: "none", 
                                   borderRadius: "5px",
