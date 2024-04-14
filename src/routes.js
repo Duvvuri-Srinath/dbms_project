@@ -23,6 +23,8 @@ import AllOffers from "views/AllOffers";
 import PostUpdate from "views/PostUpdate";
 import UpdateProfile from "views/UpdateProfile";
 import AdminProfile from "views/AdminProfile";
+import AllInterviews from "views/AllInterviews";
+
 const dashboardRoutes = [
   // {
 
@@ -143,7 +145,7 @@ const dashboardRoutes = [
     path: "/interviews",
     name: "All Interviews",
     icon: "nc-icon nc-circle-09",
-    component: Interviews,
+    component: AllInterviews,
     layout: "/c",
   },
   {

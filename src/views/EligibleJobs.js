@@ -54,7 +54,7 @@ export default function EligibleJobs() {
 
   return (
     <div>
-      <TableList data={data} fields={fields} apply={true} heading="Eligible Jobs" />
+      <TableList data={data} fields={fields} apply={true} val={"Apply"} heading="Eligible Jobs" />
     </div>
   );
 }

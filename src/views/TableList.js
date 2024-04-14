@@ -13,74 +13,7 @@ import {
   Col,
 } from "react-bootstrap";
 
-function TableList({ data, fields, heading, apply = false }) {
-  // const data = [
-  //   {
-  //     SROLL: '2019001',
-  //     SNAME: 'Alice',
-  //     CGPA: 8.5,
-  //     EMAIL: 'alice@example.com',
-  //     GENDER: 'f',
-  //     ANY_ARREARS: 'n',
-  //     PR_ID: 1,
-  //     BR_ID: 1,
-  //     Pass: 'password123',
-  //     OFFER_ID: 1,
-  //     OFFER_LOC: 'New York'
-  //   },
-  //   {
-  //     SROLL: '2019002',
-  //     SNAME: 'Bob',
-  //     CGPA: 8,
-  //     EMAIL: 'bob@example.com',
-  //     GENDER: 'm',
-  //     ANY_ARREARS: 'n',
-  //     PR_ID: 1,
-  //     BR_ID: 1,
-  //     Pass: 'password456',
-  //     OFFER_ID: 2,
-  //     OFFER_LOC: 'London'
-  //   },
-  //   {
-  //     SROLL: '2019003',
-  //     SNAME: 'Charlie',
-  //     CGPA: 7.5,
-  //     EMAIL: 'charlie@example.com',
-  //     GENDER: 'm',
-  //     ANY_ARREARS: 'y',
-  //     PR_ID: 2,
-  //     BR_ID: 2,
-  //     Pass: 'password789',
-  //     OFFER_ID: 3,
-  //     OFFER_LOC: 'Tokyo'
-  //   },
-  //   {
-  //     SROLL: '2019004',
-  //     SNAME: 'David',
-  //     CGPA: 7,
-  //     EMAIL: 'david@example.com',
-  //     GENDER: 'm',
-  //     ANY_ARREARS: 'n',
-  //     PR_ID: 2,
-  //     BR_ID: 2,
-  //     Pass: 'password101112',
-  //     OFFER_ID: 4,
-  //     OFFER_LOC: 'Paris'
-  //   },
-  //   {
-  //     SROLL: '2019005',
-  //     SNAME: 'Eve',
-  //     CGPA: 6.5,
-  //     EMAIL: 'eve@example.com',
-  //     GENDER: 'f',
-  //     ANY_ARREARS: 'y',
-  //     PR_ID: 3,
-  //     BR_ID: 3,
-  //     Pass: 'password131415',
-  //     OFFER_ID: 5,
-  //     OFFER_LOC: 'Sydney'
-  //   }
-  // ]
+function TableList({ data, fields, heading, apply = false, val}) {
   console.log(fields);
   console.log(data);
   console.log(heading);
@@ -148,7 +81,7 @@ function TableList({ data, fields, heading, apply = false }) {
                           <td>
                             <form onSubmit={handleFormSubmit}>
                               <input type="hidden" name="user_id" value={item.ID}></input>
-                              <input type="submit" value="Apply" style={{
+                              <input type="submit" value={val} style={{
                                   width: "100%",
                                   padding: "8px 12px",
                                   fontSize: "16px",
