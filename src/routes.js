@@ -25,6 +25,7 @@ import UpdateProfile from "views/UpdateProfile";
 import AdminProfile from "views/AdminProfile";
 import AllInterviews from "views/AllInterviews";
 import StudentsList from "views/StudentsList";
+import StudentOffer from "views/StudentOffer";
 
 const dashboardRoutes = [
   // {
@@ -177,6 +178,13 @@ const dashboardRoutes = [
     component: StudentsList,
     layout: "/c",
   },
+  {
+    path: "/offers",
+    name: "Offers List",
+    icon: "nc-icon nc-circle-09",
+    component: StudentOffer,
+    layout: "/s",
+  },
   // {
   //   path: "/dashboard",
   //   name: "Dashboard",
@@ -212,13 +220,13 @@ const dashboardRoutes = [
   //   component: Maps,
   //   layout: "/s"
   // },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    icon: "nc-icon nc-bell-55",
-    component: Notifications,
-    layout: "/a"
-  }
+  // {
+  //   path: "/notifications",
+  //   name: "Notifications",
+  //   icon: "nc-icon nc-bell-55",
+  //   component: Notifications,
+  //   layout: "/a"
+  // }
 ];
 
 export default dashboardRoutes;
