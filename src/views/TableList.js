@@ -14,9 +14,6 @@ import {
 } from "react-bootstrap";
 
 function TableList({ data, fields, heading, apply = false, approve= false, reject=false, val1, val,handlesubmit, handlesubmit1}) {
-  console.log(fields);
-  console.log(data);
-  console.log(heading);
 
   return (
     <>
@@ -39,7 +36,6 @@ function TableList({ data, fields, heading, apply = false, approve= false, rejec
                     </tr>
                   </thead>
                   <tbody>
-                    {console.log(data[0])}
                     {data && (data.map((item) => (
                       <tr key={item.id}>
                         {Object.values(item).map((value, index) => (

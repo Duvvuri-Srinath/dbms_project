@@ -6,6 +6,10 @@ function Sidebar({ color, image, routes }) {
   const activeRoute = (routeName) => {
     return location.pathname.indexOf(routeName) > -1 ? "active" : "";
   };
+
+  routes = routes.filter((route) => {
+    return route.path != '/studentslist';
+  })
   return (
     <div className="sidebar" data-image={image} data-color={color}>
       <div

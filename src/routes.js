@@ -24,6 +24,7 @@ import PostUpdate from "views/PostUpdate";
 import UpdateProfile from "views/UpdateProfile";
 import AdminProfile from "views/AdminProfile";
 import AllInterviews from "views/AllInterviews";
+import StudentsList from "views/StudentsList";
 
 const dashboardRoutes = [
   // {
@@ -167,6 +168,13 @@ const dashboardRoutes = [
     name: "Update Profile",
     icon: "nc-icon nc-circle-09",
     component: UpdateProfile,
+    layout: "/c",
+  },
+  {
+    path: "/studentslist",
+    name: "Students List",
+    icon: "nc-icon nc-circle-09",
+    component: StudentsList,
     layout: "/c",
   },
   // {
