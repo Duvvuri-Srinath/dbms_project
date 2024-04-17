@@ -16,3 +16,76 @@ function StudentsList() {
 }
 
 export default StudentsList;
+
+//
+{/* <>
+<td>
+<form onSubmit={handleFormSubmit}>
+  <input
+    type="hidden"
+    name="user_id"
+    value={item.JID}
+  />
+  <input
+    type="submit"
+    value="Applied students"
+    style={{
+      width: "100%",
+      padding: "8px 12px",
+      fontSize: "16px",
+      backgroundColor: "#007bff",
+      color: "#ffffff",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer",
+    }}
+  />
+</form>
+</td>
+<td>
+<form onSubmit={handleFormSubmit}>
+<input
+  type="hidden"
+  name="user_id"
+  value={item.JID}
+/>
+<input
+  type="submit"
+  value="Interviewed students"
+  style={{
+    width: "100%",
+    padding: "8px 12px",
+    fontSize: "16px",
+    backgroundColor: "#007bff",
+    color: "#ffffff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  }}
+/>
+</form>
+</td>
+<td>
+<form onSubmit={handleFormSubmit}>
+<input
+type="hidden"
+name="user_id"
+value={item.JID}
+/>
+<input
+type="submit"
+value="offered students"
+style={{
+  width: "100%",
+  padding: "8px 12px",
+  fontSize: "16px",
+  backgroundColor: "#007bff",
+  color: "#ffffff",
+  border: "none",
+  borderRadius: "5px",
+  cursor: "pointer",
+}}
+/>
+</form>
+</td>
+</> */}
