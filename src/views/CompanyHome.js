@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {Route} from 'react-router-dom'
+import {Route, Link} from 'react-router-dom'
 import PropTypes from "prop-types";
+import StudentsList from "./StudentsList";
+import ViewJob from "./ViewJob";
+import { Redirect, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import {
   // react-bootstrap components
   Badge,
@@ -13,9 +16,6 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import StudentsList from "./StudentsList";
-import { Redirect, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function CompanyHome() {
 
@@ -63,41 +63,10 @@ export default function CompanyHome() {
   const handleFormSubmit = async (event) => {
 
     event.preventDefault(); // Prevent default form submission behavior
-    console.log(event.target[0].value);
-    try {
-      const response = await fetch("http://localhost:3000/c/applicants", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({JID:event.target[0].value}),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to update profile");
-      }
-
-      const jsonData = await response.json();
-      history.push({
-        pathname: '/c/studentslist',
-        state: {data:jsonData.rows,fields:jsonData.fields},
-      });
-    } catch (error) {
-      console.error("Error updating profile:", error);
-    }
-
-    // const data = {
-    //   fields: ["AID", "ANAME", "AROLE", "PASS"],
-    //   rows: [
-    //     {AID: 1, ANAME: 'John Doe', AROLE: 'Admin', Pass: 'adminpass123'},
-    //     {AID: 2, ANAME: 'Jane Smith', AROLE: 'Super Admin', Pass: 'superadminpass456'},
-    //     {AID: 3, ANAME: 'Alice Johnson', AROLE: 'Admin', Pass: 'adminpass789'},
-    //   ],
-    // }
-
-    // Navigate to the new route with the props as state
-
+    history.push({
+      pathname: '/c/viewjob',
+      state: {JID: event.target[0].value},
+    });
   };
 
   
@@ -131,30 +100,6 @@ export default function CompanyHome() {
                             <td key={index}>{value}</td>
                           ))}
                           {item.JSTATUS == "approved" && (
-                              <>
-                              <td>
-                              <form onSubmit={handleFormSubmit}>
-                                <input
-                                  type="hidden"
-                                  name="user_id"
-                                  value={item.JID}
-                                />
-                                <input
-                                  type="submit"
-                                  value="Applied students"
-                                  style={{
-                                    width: "100%",
-                                    padding: "8px 12px",
-                                    fontSize: "16px",
-                                    backgroundColor: "#007bff",
-                                    color: "#ffffff",
-                                    border: "none",
-                                    borderRadius: "5px",
-                                    cursor: "pointer",
-                                  }}
-                                />
-                              </form>
-                            </td>
                             <td>
                             <form onSubmit={handleFormSubmit}>
                               <input
@@ -164,7 +109,7 @@ export default function CompanyHome() {
                               />
                               <input
                                 type="submit"
-                                value="Interviewed students"
+                                value="view Job"
                                 style={{
                                   width: "100%",
                                   padding: "8px 12px",
@@ -177,31 +122,7 @@ export default function CompanyHome() {
                                 }}
                               />
                             </form>
-                          </td>
-                          <td>
-                          <form onSubmit={handleFormSubmit}>
-                            <input
-                              type="hidden"
-                              name="user_id"
-                              value={item.JID}
-                            />
-                            <input
-                              type="submit"
-                              value="offered students"
-                              style={{
-                                width: "100%",
-                                padding: "8px 12px",
-                                fontSize: "16px",
-                                backgroundColor: "#007bff",
-                                color: "#ffffff",
-                                border: "none",
-                                borderRadius: "5px",
-                                cursor: "pointer",
-                              }}
-                            />
-                          </form>
-                        </td>
-                              </>
+                            </td>
                           )}
                         </tr>
                       ))}
