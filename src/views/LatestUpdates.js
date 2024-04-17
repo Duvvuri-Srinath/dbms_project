@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TableList from "views/TableList";
+import { Button } from 'react-bootstrap';
 
 export default function AllJobs() {
   const [data, setData] = useState([]);
@@ -51,9 +52,37 @@ export default function AllJobs() {
     return <div>Error: {error.message}</div>;
   }
 
+   // Define the styles for the buttons
+   const linkButtonStyle = {
+    width: "100%",
+    padding: "8px 12px",
+    fontSize: "16px",
+    backgroundColor: "#007bff",
+    color: "#ffffff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  };
+
+    // Map the data to include buttons
+    const renderTableData = data.map((row) => {
+      return {
+          ...row,
+          LINK: (
+              <Button 
+                  style={linkButtonStyle}
+                  href={row.LINK} 
+                  target="_blank"
+              >
+                  Visit
+              </Button>
+          ),
+      };
+  });
+
   return (
     <div>
-      <TableList data={data} fields={fields} heading="All Jobs" />
+      <TableList data={renderTableData} fields={fields} heading="All Jobs" />
     </div>
   );
 }

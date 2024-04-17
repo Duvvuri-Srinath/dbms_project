@@ -1,56 +1,122 @@
-import React, { useEffect, useState } from "react";
-import TableList from "views/TableList";
+import React, { useState } from 'react';
+import { Button, Card, Form, Container, Row, Col } from 'react-bootstrap';
 
-export default function AdminStudents() {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [fields, setFields] = useState([]);
+function PostUpdate() {
 
-  const fetchData = async () => {
+  const [formData, setFormData] = useState({
+    TITLE: '',
+    CONTENT: '',
+    LINK: '',
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
     try {
-        console.log("token : ", localStorage.getItem('token'));
-      const response = await fetch("http://localhost:3000/a/updates", {
-        method: "GET",
-        headers: { 
-            "Content-Type": "application/json",
-            "Authorization": "Bearer "+localStorage.getItem("token"),
+      const response = await fetch('http://localhost:3000/a/updates', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
-      })
-        .then((response) => {
-          console.log(response, "here");
-          return response;
-        })
-        .catch((err) => console.log("Fetch Error: ", err));
+        body: JSON.stringify(formData),
+      });
+
       if (!response.ok) {
-        throw new Error("Failed to fetch data");
+        throw new Error('Failed to post update');
       }
-      const jsonData = await response.json();
-      console.log("jsondatda:", jsonData);
-      setData(jsonData.rows); // Accessing the 'rows' array in the response
-      setFields(jsonData.fields); // Accessing the 'columns' array in
-      setLoading(false);
+
+      setFormData({
+        TITLE: '',
+        CONTENT: '',
+        LINK: '',
+      });
+
+      alert('Posted successfully');
+
     } catch (error) {
-      setError(error);
-      setLoading(false);
+      console.error('Error posting update:', error);
+      alert('Failed to post update');
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
   return (
-    <div>
-      <TableList data={data} fields={fields} heading="My Profile" />
-    </div>
+    <Container fluid>
+      <Row>
+        <Col md="8">
+          <Card>
+            <Card.Header>
+              <Card.Title as="h4">Post Updates</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Form onSubmit={handleFormSubmit}>
+                <Row>
+                  <Col md="12">
+                    <Form.Group>
+                      <label>Title</label>
+                      <Form.Control
+                        name="TITLE"
+                        value={formData.TITLE}
+                        onChange={handleInputChange}
+                        type="text"
+                        placeholder="Enter title"
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md="12">
+                    <Form.Group>
+                      <label>Content</label>
+                      <Form.Control
+                        name="CONTENT"
+                        value={formData.CONTENT}
+                        onChange={handleInputChange}
+                        type="textarea"
+                        placeholder="Enter content"
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md="12">
+                    <Form.Group>
+                      <label>Link</label>
+                      <Form.Control
+                        name="LINK"
+                        value={formData.LINK}
+                        onChange={handleInputChange}
+                        type="url"
+                        placeholder="Enter link (optional)"
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Button
+                  className="btn-fill pull-right mt-3"
+                  type="submit"
+                  variant="info"
+                >
+                  Submit Update
+                </Button>
+                <div className="clearfix"></div>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 }
+
+export default PostUpdate;
+

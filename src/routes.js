@@ -23,6 +23,8 @@ import AllOffers from "views/AllOffers";
 import PostUpdate from "views/PostUpdate";
 import UpdateProfile from "views/UpdateProfile";
 import AdminProfile from "views/AdminProfile";
+import AllUpdates from "views/AllUpdates";
+
 import AllInterviews from "views/AllInterviews";
 import StudentsList from "views/StudentsList";
 import StudentOffer from "views/StudentOffer";
@@ -165,6 +167,13 @@ const dashboardRoutes = [
     name: "Post Updates",
     icon: "nc-icon nc-circle-09",
     component: PostUpdate,
+    layout: "/a",
+  },
+  {
+    path: "/allUpdates",
+    name: "All Updates",
+    icon: "nc-icon nc-circle-09",
+    component: AllUpdates,
     layout: "/a",
   },
   {
