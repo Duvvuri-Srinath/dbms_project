@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useLocation} from "react-router-dom";
+import {useLocation, useHistory} from "react-router-dom";
 import {
     Button,
     Card,
@@ -13,10 +13,11 @@ import TableList from "./TableList";
 function StudentsList() {
  
   const location = useLocation();
-  const data = location.state;
-  console.log(data.JID);
+  const history = useHistory();
+  const data1 = location.state;
+  console.log("data1 is:",data1.JID);
   const [formData, setFormData] = useState({
-    INTERVIEW_DATA: "",
+    INTERVIEW_DATE: "",
     INTERVIEW_TIME: ""
   });
 
@@ -24,13 +25,13 @@ function StudentsList() {
 const handleSubmit = async (e) =>{
     e.preventDefault();
     try {
-        const response = await fetch("http://localhost:3000/c/applicants", {
+        const response = await fetch("http://localhost:3000/c/studentslist", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-          body: JSON.stringify({JID:data.JID}),
+          body: JSON.stringify({JID:data1.JID}),
         });
   
         if (!response.ok) {
@@ -47,16 +48,72 @@ const handleSubmit = async (e) =>{
         console.error("Error updating profile:", error);
       }
 }
+
+const handleSubmit1 = async (e) =>{
+    e.preventDefault();
+    try {
+        const response = await fetch("http://localhost:3000/c/interviewlist", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({JID:data1.JID}),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Failed to update profile");
+        }
+  
+        const jsonData = await response.json();
+        console.log(jsonData);
+        history.push({
+            pathname: '/c/interviewlist',
+            state: {fields: jsonData.fields, data: jsonData.rows},
+          });
+      } catch (error) {
+        console.error("Error updating profile:", error);
+      }
+}
+
+const handleSubmit2 = async (e) =>{
+    e.preventDefault();
+    try {
+        const response = await fetch("http://localhost:3000/c/offerlist", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({JID:data1.JID}),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Failed to update profile");
+        }
+  
+        const jsonData = await response.json();
+        console.log(jsonData);
+        history.push({
+            pathname: '/c/offerlist',
+            state: {fields: jsonData.fields, data: jsonData.rows},
+          });
+      } catch (error) {
+        console.error("Error updating profile:", error);
+      }
+}
+
   // Function to fetch data from the API
   const fetchData = async () => {
     
     try {
-      const response = await fetch("http://localhost:3000/c/time", {
+      const response = await fetch("http://localhost:3000/c/interviewdetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
+        body: JSON.stringify({JID:data1.JID}),
       });
 
       if (!response.ok) {
@@ -68,7 +125,7 @@ const handleSubmit = async (e) =>{
 
       // Update the form data state with the fetched data
       setFormData({
-        INTERVIEW_DATA: data.INTERVIEW_DATA||"",
+        INTERVIEW_DATE: data.INTERVIEW_DATE||"",
         INTERVIEW_TIME: data.INTERVIEW_TIME||"",
       });
 
@@ -85,6 +142,7 @@ const handleSubmit = async (e) =>{
 
   // Handle form input changes
   const handleInputChange = (event) => {
+    event.preventDefault();
     const { name, value } = event.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -96,7 +154,7 @@ const handleSubmit = async (e) =>{
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/s/updatedetails", {
+      const response = await fetch("http://localhost:3000/c/updateinterviewdetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -132,10 +190,11 @@ const handleSubmit = async (e) =>{
                       <Form.Group>
                         <label>Interview date</label>
                         <Form.Control
-                          name="CGPA"
-                          value={formData.INTERVIEW_DATA}
-                          placeholder="CGPA"
+                          name="INTERVIEW_DATE"
+                          value={formData.INTERVIEW_DATE}
+                          placeholder=""
                           type="date"
+                          onChange={handleInputChange}
                         />
                       </Form.Group>
                     </Col>
@@ -143,9 +202,9 @@ const handleSubmit = async (e) =>{
                       <Form.Group>
                         <label>Interview time</label>
                         <Form.Control
-                          name="EMAIL"
+                          name="INTERVIEW_TIME"
                           value={formData.INTERVIEW_TIME}
-                          placeholder="Email"
+                          placeholder=""
                           type="time"
                           onChange={handleInputChange}
                         />
@@ -168,7 +227,7 @@ const handleSubmit = async (e) =>{
                     <input
                     type="hidden"
                     name="user_id"
-                    value={data.JID}
+                    value={data1.JID}
                     />
                     <input
                     type="submit"
@@ -187,11 +246,11 @@ const handleSubmit = async (e) =>{
                 </form>
                 </td>
                 <td>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit1}>
                     <input
                     type="hidden"
                     name="user_id"
-                    value={data.JID}
+                    value={data1.JID}
                     />
                     <input
                     type="submit"
@@ -210,11 +269,11 @@ const handleSubmit = async (e) =>{
                 </form>
                 </td>
                 <td>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit2}>
                     <input
                     type="hidden"
                     name="user_id"
-                    value={data.JID}
+                    value={data1.JID}
                     />
                     <input
                     type="submit"

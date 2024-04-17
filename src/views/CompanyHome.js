@@ -63,6 +63,7 @@ export default function CompanyHome() {
   const handleFormSubmit = async (event) => {
 
     event.preventDefault(); // Prevent default form submission behavior
+    console.log(event.target[0].value);
     history.push({
       pathname: '/c/viewjob',
       state: {JID: event.target[0].value},
