@@ -8,7 +8,7 @@ function Sidebar({ color, image, routes }) {
   };
 
   routes = routes.filter((route) => {
-    return (route.path != '/studentslist' && route.path != '/viewjob');
+    return (route.path != '/studentslist' && route.path != '/viewjob' && route.path!='/interviewlist' && route.path!='/offerlist');
   })
   return (
     <div className="sidebar" data-image={image} data-color={color}>

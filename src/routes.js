@@ -27,6 +27,8 @@ import AllInterviews from "views/AllInterviews";
 import StudentsList from "views/StudentsList";
 import StudentOffer from "views/StudentOffer";
 import ViewJob from "views/ViewJob";
+import InterviewList from "views/InterviewList";
+import OfferList from "views/OfferList";
 
 const dashboardRoutes = [
   // {
@@ -177,6 +179,20 @@ const dashboardRoutes = [
     name: "Students List",
     icon: "nc-icon nc-circle-09",
     component: StudentsList,
+    layout: "/c",
+  },
+  {
+    path: "/interviewlist",
+    name: "Interview List",
+    icon: "nc-icon nc-circle-09",
+    component: InterviewList,
+    layout: "/c",
+  },
+  {
+    path: "/offerlist",
+    name: "Offer List",
+    icon: "nc-icon nc-circle-09",
+    component: OfferList,
     layout: "/c",
   },
   {
