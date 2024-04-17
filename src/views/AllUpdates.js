@@ -8,6 +8,7 @@ export default function AllJobs() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    // Function to fetch data from the API
     const fetchData = async () => {
         try {
             const response = await fetch('http://localhost:3000/a/updates', {
@@ -32,6 +33,7 @@ export default function AllJobs() {
         }
     };
 
+    // Function to handle removing an entry
     const handleRemove = async (mid) => {
         try {
             const response = await fetch('http://localhost:3000/a/removeUpdate', {
@@ -55,10 +57,17 @@ export default function AllJobs() {
         }
     };
 
+    // Function to handle visiting a URL
+    const handleVisit = (url) => {
+        window.open(url, '_blank');
+    };
+
+    // Fetch data when the component mounts
     useEffect(() => {
         fetchData();
     }, []);
 
+    // Render loading or error states
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -67,27 +76,59 @@ export default function AllJobs() {
         return <div>Error: {error.message}</div>;
     }
 
+    // Define the styles for the buttons
+    const linkButtonStyle = {
+        width: "100%",
+        padding: "8px 12px",
+        fontSize: "16px",
+        backgroundColor: "#007bff",
+        color: "#ffffff",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+    };
+
+    const deleteButtonStyle = {
+        width: "100%",
+        padding: "8px 12px",
+        fontSize: "16px",
+        backgroundColor: "#FF0000",
+        color: "#ffffff",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+    };
+
+    // Map the data to include buttons
     const renderTableData = data.map((row) => {
         return {
             ...row,
             LINK: (
-                <Button variant="primary" href={row.LINK} target="_blank">
+                <Button 
+                    style={linkButtonStyle}
+                    href={row.LINK} 
+                    target="_blank"
+                >
                     Visit
                 </Button>
             ),
             DELETE: (
-                <Button variant="danger" onClick={() => handleRemove(row.MID)}>
+                <Button
+                    style={deleteButtonStyle}
+                    onClick={() => handleRemove(row.MID)}
+                >
                     Remove
                 </Button>
             ),
         };
     });
 
+    // Render the TableList component
     return (
         <div>
             <TableList
                 data={renderTableData}
-                fields={['MID','AID', 'TITLE', 'CONTENT', 'LINK', 'DELETE']}
+                fields={['MID', 'AID', 'TITLE', 'CONTENT', 'LINK', 'DELETE']}
                 heading="All Updates"
             />
         </div>

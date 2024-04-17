@@ -3,14 +3,18 @@ import TableList from "views/TableList";
 
 export default function AddNewJob() {
   const [data, setData] = useState([]);
+  const [fields, setFields] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:3000/s/AllJobs", {
+      const response = await fetch("http://localhost:3000/s/interviews", {
         method: "GET",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       })
         .then((response) => {
           console.log(response, "here");
@@ -24,6 +28,7 @@ export default function AddNewJob() {
       const jsonData = await response.json();
       console.log("jsondatda:", jsonData);
       setData(jsonData.rows); // Accessing the 'rows' array in the response
+      setFields(jsonData.fields); // Accessing the 'fields' array in the response
       setLoading(false);
     } catch (error) {
       setError(error);
@@ -45,7 +50,7 @@ export default function AddNewJob() {
 
   return (
     <div>
-      <TableList data={data} heading="All Jobs" />
+      <TableList data={data} fields={fields} heading="All Jobs" />
     </div>
   );
 }
