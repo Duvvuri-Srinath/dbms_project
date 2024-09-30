@@ -166,9 +166,6 @@ const handleSubmit2 = async (e) =>{
       if (!response.ok) {
         throw new Error("Failed to update profile");
       }
-
-      // Optionally, you can fetch data again after updating
-      fetchData();
     } catch (error) {
       console.error("Error updating profile:", error);
     }
