@@ -15,8 +15,9 @@ function StudentsList() {
   const location = useLocation();
   const history = useHistory();
   const data1 = location.state;
-  console.log("data1 is:",data1.JID);
+  //console.log("data1 is:",data1.JID);
   const [formData, setFormData] = useState({
+    JID:data1.JID,
     INTERVIEW_DATE: "",
     INTERVIEW_TIME: ""
   });
@@ -25,6 +26,7 @@ function StudentsList() {
 const handleSubmit = async (e) =>{
     e.preventDefault();
     try {
+      //console.log("data sending jid is: ",data1.JID)
         const response = await fetch("http://localhost:3000/c/studentslist", {
           method: "POST",
           headers: {
@@ -39,13 +41,13 @@ const handleSubmit = async (e) =>{
         }
   
         const jsonData = await response.json();
-        console.log(jsonData);
+        //console.log(jsonData);
         history.push({
             pathname: '/c/studentslist',
             state: {fields: jsonData.fields, data: jsonData.rows},
           });
       } catch (error) {
-        console.error("Error updating profile:", error);
+        //console.error("Error updating profile:", error);
       }
 }
 
@@ -66,13 +68,13 @@ const handleSubmit1 = async (e) =>{
         }
   
         const jsonData = await response.json();
-        console.log(jsonData);
+        //console.log(jsonData);
         history.push({
             pathname: '/c/interviewlist',
             state: {fields: jsonData.fields, data: jsonData.rows},
           });
       } catch (error) {
-        console.error("Error updating profile:", error);
+        //console.error("Error updating profile:", error);
       }
 }
 
@@ -93,13 +95,13 @@ const handleSubmit2 = async (e) =>{
         }
   
         const jsonData = await response.json();
-        console.log(jsonData);
+        //console.log(jsonData);
         history.push({
             pathname: '/c/offerlist',
             state: {fields: jsonData.fields, data: jsonData.rows},
           });
       } catch (error) {
-        console.error("Error updating profile:", error);
+        //console.error("Error updating profile:", error);
       }
 }
 
@@ -125,13 +127,14 @@ const handleSubmit2 = async (e) =>{
 
       // Update the form data state with the fetched data
       setFormData({
+        JID:data1.JID||"",
         INTERVIEW_DATE: data.INTERVIEW_DATE||"",
         INTERVIEW_TIME: data.INTERVIEW_TIME||"",
       });
 
-      console.log("Fetched data:", data);
+      //console.log("Fetched data:", data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      //console.error("Error fetching data:", error);
     }
   };
 
@@ -147,6 +150,7 @@ const handleSubmit2 = async (e) =>{
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
+      
     }));
   };
 
@@ -154,6 +158,7 @@ const handleSubmit2 = async (e) =>{
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
+      console.log("data is sending1: " ,formData)
       const response = await fetch("http://localhost:3000/c/updateinterviewdetails", {
         method: "POST",
         headers: {
@@ -167,7 +172,7 @@ const handleSubmit2 = async (e) =>{
         throw new Error("Failed to update profile");
       }
     } catch (error) {
-      console.error("Error updating profile:", error);
+      //console.error("Error updating profile:", error);
     }
   };
 
