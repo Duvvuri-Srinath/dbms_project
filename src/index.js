@@ -14,6 +14,7 @@ import CompanyLayout from "layouts/Company.js";
 import AdminLayout from "layouts/Admin.js";
 import LoginLayout from "layouts/Login.js";
 import StudentsList from "./views/StudentsList.js";
+import AddUserLayout from "layouts/AddUser.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -24,7 +25,7 @@ root.render(
       <Route path="/c" render={(props) => <CompanyLayout {...props} />} />
       <Route path="/a" render={(props) => <AdminLayout {...props} />} />
       <Route path="/login" render={(props) => <LoginLayout {...props} />} />
-    
+      <Route path="/adduser" render={(props) => <AddUserLayout {...props} />} />
       <Redirect from="/" to="/login" />
     </Switch>
   </BrowserRouter>
