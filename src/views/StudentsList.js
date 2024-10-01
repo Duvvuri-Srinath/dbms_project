@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {useLocation, useHistory} from "react-router-dom";
 import {
   // react-bootstrap components
@@ -16,11 +16,14 @@ import {
 function StudentsList() {
   const location = useLocation();
   const data = location.state;
+  const [studentList, setStudentList] = useState(data.data);
+
   console.log(data.data);
   const handlesubmit = async (event) => {
+    event.preventDefault();
     const formData = new FormData(event.target);
     const userId = formData.get("user_id");
-    console.log(userId);
+    alert(userId);
     try {
       const response = await fetch("http://localhost:3000/c/interviewselected", {
         method: "POST",
@@ -38,6 +41,11 @@ function StudentsList() {
     } catch (error) {
       console.error("Error Applying", error);
     }
+    let newList = studentList.filter((student)=>{
+      return student.APP_ID != userId ;
+    });
+    
+    setStudentList(newList);
   };
   const handlesubmit1 = async (event) => {
     const formData = new FormData(event.target);
@@ -59,6 +67,7 @@ function StudentsList() {
       event.target.reset();
       // Optionally, you can fetch data again after updating
       fetchData();
+
     } catch (error) {
       console.error("Error Applying", error);
     }
@@ -84,7 +93,7 @@ function StudentsList() {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.data && (data.data.map((item) => (
+                    {data.data && (studentList.map((item) => (
                       <tr key={item.id}>
                         {Object.values(item).map((value, index) => (
                           <td key={index}>{value}</td>
