@@ -65,8 +65,14 @@ function StudentsList() {
         throw new Error("Failed to Apply");
       }
       event.target.reset();
-      // Optionally, you can fetch data again after updating
-      fetchData();
+
+      let newList = studentList.filter((student)=>{
+        return student.APP_ID != userId ;
+      });
+      
+      setStudentList(newList);
+      // // Optionally, you can fetch data again after updating
+      // fetchData();
 
     } catch (error) {
       console.error("Error Applying", error);
