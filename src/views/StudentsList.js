@@ -23,7 +23,6 @@ function StudentsList() {
     event.preventDefault();
     const formData = new FormData(event.target);
     const userId = formData.get("user_id");
-    alert(userId);
     try {
       const response = await fetch("http://localhost:3000/c/interviewselected", {
         method: "POST",
@@ -48,11 +47,13 @@ function StudentsList() {
     setStudentList(newList);
   };
   const handlesubmit1 = async (event) => {
+    event.preventDefault();
     const formData = new FormData(event.target);
     const userId = formData.get("user_id");
+
     try {
       console.log("false");
-      const response = await fetch("http://localhost:3000/c/interviewrejected", {
+      const response = await fetch("http://localhost:3000/c/rejected", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -65,18 +66,18 @@ function StudentsList() {
         throw new Error("Failed to Apply");
       }
       event.target.reset();
-
-      let newList = studentList.filter((student)=>{
-        return student.APP_ID != userId ;
-      });
-      
-      setStudentList(newList);
       // // Optionally, you can fetch data again after updating
       // fetchData();
 
     } catch (error) {
       console.error("Error Applying", error);
     }
+
+    let newList = studentList.filter((student)=>{
+      return student.APP_ID != userId ;
+    });
+    
+    setStudentList(newList);
   };
   return (
     <>
@@ -141,7 +142,7 @@ function StudentsList() {
                         {true && (
                           <td>
                             <form onSubmit={handlesubmit1}>
-                              <input type="hidden" name="user_id" value={item.ID}></input>
+                              <input type="hidden" name="user_id" value={item.APP_ID}></input>
                               <input type="submit" value={"reject"} style={{
                                   width: "100%",
                                   padding: "8px 12px",

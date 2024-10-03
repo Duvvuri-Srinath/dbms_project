@@ -78,8 +78,12 @@ const Login = () => {
             if (!response.ok) {
                 throw new Error('Failed to register company');
             }
-    
-            alert('Company registered successfully!');
+
+            const jsonData = await response.json();
+            
+            console.log(jsonData);
+            alert('Company registered successfully with user id :' + jsonData['cid']);
+
             history.push('/login');
         } catch (error) {
             alert(error.message);

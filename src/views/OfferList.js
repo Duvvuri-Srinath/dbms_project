@@ -1,8 +1,8 @@
 import React from "react";
-import {useLocation, useHistory} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import TableList from "./TableList";
 
-function StudentsList() {
+function OfferList() {
  
   const location = useLocation();
   const data = location.state;
@@ -10,9 +10,9 @@ function StudentsList() {
 
   return (
     <div>
-        <TableList fields={data.fields} data={data.data} heading="students list"/>
+        <TableList fields={data.fields} data={data.data} heading="offered list"/>
     </div>
   );
 }
 
-export default StudentsList;
+export default OfferList;

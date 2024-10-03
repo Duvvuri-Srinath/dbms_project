@@ -68,18 +68,19 @@ const handleSubmit1 = async (e) =>{
         }
   
         const jsonData = await response.json();
-        //console.log(jsonData);
+        console.log(jsonData);
         history.push({
             pathname: '/c/interviewlist',
             state: {fields: jsonData.fields, data: jsonData.rows},
           });
       } catch (error) {
-        //console.error("Error updating profile:", error);
+        console.error("Error:", error);
       }
 }
 
 const handleSubmit2 = async (e) =>{
     e.preventDefault();
+    // console.log(data1);
     try {
         const response = await fetch("http://localhost:3000/c/offerlist", {
           method: "POST",
